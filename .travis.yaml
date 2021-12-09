@@ -1,0 +1,12 @@
+env:
+  jobs:
+    - SHOW_VERSION=true ECHO_INFO="hello world"
+
+jobs:
+  fast_finish: true
+  include:
+    - stage: build docker container
+      script:
+        - docker build -t hello-traivis .
+    - stage: run action
+      script: docker run hello-traivis
